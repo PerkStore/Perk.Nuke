@@ -41,7 +41,3 @@ python -m pip install -r req.txt
 
 python3 PerkClient.py
 ```
-
-***
-# Running
-It's that simple! Enter the command `python nuke-bot.py` or `python3 nuke-bot.py` and the nuke bot interface will launch.
