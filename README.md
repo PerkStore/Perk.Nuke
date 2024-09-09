@@ -19,7 +19,7 @@ pkg install python git
 
 git clone https://github.com/KadenCrus/Perk.Nuke
 
-cd PerkClient
+cd Perk.Nuke
 
 python -m pip install -r req.txt
 
@@ -27,7 +27,7 @@ python PerkClient.py
 ```
 **[Subsequent launches]**
 ```console
-cd PerkClient
+cd Perk.Nuke
 
 python PerkClient.py
 ```
@@ -35,9 +35,9 @@ python PerkClient.py
 ```console
 git clone https://github.com/KadenCrus/Perk.Nuke
 
-cd PerkClient
+cd Perk.Nuke
 
-python -m pip install -r requirements.txt
+python -m pip install -r req.txt
 
 python3 PerkClient.py
 ```
