@@ -2,11 +2,11 @@
 * Python 3.6 - 3.8
 ***
 # Features
-<h1>Delete Channels </h1>
-<h1>Ban All Members </h1>
-<h1>Delete Roles</h1>
-<h1>Create Channels</h1>
-<h1>Create Roles</h1>
+<h3>Delete Channels </h3>
+<h3>Ban All Members </h3>
+<h3>Delete Roles</h3>
+<h3>Create Channels</h3>
+<h3>Create Roles</h3>
 
 
 ***
