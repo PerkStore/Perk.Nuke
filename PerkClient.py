@@ -11,18 +11,21 @@ m = M = cc.LIGHTMAGENTA_EX
 c = C = cc.LIGHTCYAN_EX
 y = Y = cc.LIGHTYELLOW_EX
 w = W = cc.RESET
+t = T = cc.WHITE
+o = O = cc.LIGHTBLACK_EX
 
 clear = lambda: system('cls') if os_name == 'nt' else system('clear')
 def _input(text):print(text, end='');return input()
 
 baner = f'''
-{r}██████╗░███████╗██████╗░██╗░░██╗
-{r}██╔══██╗██╔════╝██╔══██╗██║░██╔╝ 
-{r}██████╔╝█████╗░░██████╔╝█████═╝░
-{r}██╔═══╝░██╔══╝░░██╔══██╗██╔═██╗░ 
-{r}██║░░░░░███████╗██║░░██║██║░╚██╗
-{r}╚═╝░░░░░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝
-{m}Made by: {c}https://discord.gg/zEfejep7uV'''
+{w}██████╗░███████╗██████╗░██╗░░██╗ {O}░█████╗░██╗░░░░░██╗███████╗███╗░░██╗████████╗
+{w}██╔══██╗██╔════╝██╔══██╗██║░██╔╝ {O}██╔══██╗██║░░░░░██║██╔════╝████╗░██║╚══██╔══╝
+{w}██████╔╝█████╗░░██████╔╝█████═╝░ {O}██║░░╚═╝██║░░░░░██║█████╗░░██╔██╗██║░░░██║░░░
+{w}██╔═══╝░██╔══╝░░██╔══██╗██╔═██╗░ {O}██║░░██╗██║░░░░░██║██╔══╝░░██║╚████║░░░██║░░░
+{w}██║░░░░░███████╗██║░░██║██║░╚██╗ {O}╚█████╔╝███████╗██║███████╗██║░╚███║░░░██║░░░
+{w}╚═╝░░░░░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝ {O}░╚════╝░╚══════╝╚═╝╚══════╝╚═╝░░╚══╝░░░╚═╝░░░
+{R}Made by: {b}Perk
+{R}Contact us at: {B}https://discord.gg/perkdc'''
 
 
 
@@ -98,9 +101,9 @@ while True:
 {baner}                
 {c}--------------------------------------------
 {b}[Menu]
-    {y}└─[1] {m}- {g}Run Setup Nuke Bot
-    {y}└─[2] {m}- {g}Exit
-{y}====>{g}''')
+    {W}└─[1] {m}- {R}Run Setup Nuke Bot
+    {W}└─[2] {m}- {R}Exit
+{W}====>{R}''')
     if choice == '1':
         token = _input(f'{y}Input bot token:{g}')
         name = _input(f'{y}Input name for created channels / roles:{g}')
@@ -109,10 +112,10 @@ while True:
 {baner}                
 {c}--------------------------------------------
 {b}[Select]
-    {y}└─[1] {m}- {g}Nuke of all servers.
-    {y}└─[2] {m}- {g}Nuke only one server.  
-    {y}└─[3] {m}- {g}Exit
-{y}====>{g}''')
+    {W}└─[1] {m}- {r}Nuke of all servers.
+    {W}└─[2] {m}- {r}Nuke only one server.  
+    {W}└─[3] {m}- {r}Exit
+{w}====>{r}''')
         client = commands.Bot(command_prefix='.',intents=discord.Intents.all())
         if choice_type == '1':
             @client.event
