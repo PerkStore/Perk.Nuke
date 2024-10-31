@@ -17,7 +17,7 @@ apt update && apt upgrade
 
 pkg install python git
 
-git clone https://github.com/KadenCrus/Perk.Nuke
+git clone https://github.com/PerkStore/Perk.Nuke
 
 cd Perk.Nuke
 
@@ -33,7 +33,7 @@ python PerkClient.py
 ```
 ## Linux / Windows
 ```console
-git clone https://github.com/KadenCrus/Perk.Nuke
+git clone https://github.com/PerkStore/Perk.Nuke
 
 cd Perk.Nuke
 
